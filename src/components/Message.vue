@@ -72,8 +72,7 @@
                 </div>
                 <div class="column" v-if="msglabel.type == 'text'">
                     <strong>{{ msglabelkey }}:</strong>
-                    <!--- TODO: finish --->
-                    <q-input :label="msglabelkey" label="Text annotation..." />
+                    <q-input @input="updateData()" v-model="label[msglabelkey]" label="Text annotation..." />
                 </div>
                 <div v-else>
                     <strong>{{ msglabelkey }}:</strong>
@@ -95,7 +94,6 @@ export default {
     name: 'message',
     props: ['mode', 'data', 'parentUpdateMessage', 'index', "modecolor"],
     data() {
-
         return {
             lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             label: this.$props.data.labels,
@@ -113,6 +111,7 @@ export default {
     },
     beforeMount() {
         // fix missing empty values in case there is a mismatch between the input file and the annotation scheme
+        debugger;
         for (const key in this.$store.getters.getMsgLabels) {
             if (!this.label.hasOwnProperty(key)) {
                 this.label[key] = [];
@@ -143,7 +142,6 @@ export default {
         updateData() {
             // this.messageData.labels[ this.$store.getters.firstMsgLabel.key ] = this.label;
             // this.$props.parentUpdateMessage(this.$props.index, this.messageData);
-            console.log({ label: this.label, messageData: this.messageData, props: this.$props });
             this.messageData.labels = this.label;
             this.$props.parentUpdateMessage(this.$props.index, this.messageData);
             this.$forceUpdate();

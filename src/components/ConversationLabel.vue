@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="$props.labelInfo.type == 'listselect'">
-            <q-select clearable options-cover v-model="label" @input="setValue()" :options="$props.labelInfo.values"
+            <q-select clearable options-cover v-model="label" @input="setListSelectValue()" :options="$props.labelInfo.values"
                 :label="$props.labelInfo.title" transition-show="jump-up" transition-hide="jump-up"
                 style="width: 100%; height: 25vh;" color="positive" filled>
                 <template v-slot:append>
@@ -12,19 +12,19 @@
         </div>
         <div v-else-if="$props.labelInfo.type == 'radiobtn'">
             <span class="text-blue-grey-8">{{ $props.labelInfo.title }}</span>
-            <q-option-group v-model="label" @input="setValue()" :options="$props.labelInfo.values" color="positive" inline
+            <q-option-group v-model="label" @input="setRadioButtonValue()" :options="$props.labelInfo.values" color="positive" inline
                 style="width: 100%; height: 12vh;" />
             <q-tooltip :delay="200">{{ $props.labelInfo.description }}</q-tooltip>
         </div>
         <div v-else-if="$props.labelInfo.type == 'boolean'">
             <span class="text-blue-grey-8">{{ $props.labelInfo.title }}</span>
-            <q-toggle v-model="label" @input="setValue()" :label="boolToText(label)" style="width: 100%; height: 12vh;"
+            <q-toggle v-model="label" @input="setBooleanValue()" :label="boolToText(label)" style="width: 100%; height: 12vh;"
                 checked-icon="check" unchecked-icon="clear"></q-toggle>
             <q-tooltip :delay="200">{{ $props.labelInfo.description }}</q-tooltip>
         </div>
         <div v-else-if="$props.labelInfo.type == 'text'">
             <span class="text-blue-grey-8">{{ $props.labelInfo.title }}</span>
-            <q-input v-model="label" @input="setValue()" :label="$props.labelInfo.value" label="Text annotation..." />
+            <q-input v-model="label" @input="setTextValue()" label="Text annotation..." />
             <q-tooltip :delay="200">{{ $props.labelInfo.description }}</q-tooltip>
         </div>
         <div v-else>
@@ -60,9 +60,23 @@ export default {
             if (val) { return 'yes'; }
             else { return 'no'; }
         },
-        setValue() {
-            console.log({ label: this.label, chatData: this.$props.chatData, labelName: this.$props.labelName });
+        setListSelectValue() {
             this.$props.chatData[this.$props.labelName] = this.label;
+            this.updateData();
+        },
+        setRadioButtonValue() {
+            this.$props.chatData[this.$props.labelName] = this.label;
+            this.updateData();
+        },
+        setBooleanValue(){
+            this.$props.chatData[this.$props.labelName] = this.label;
+            this.updateData();
+        },
+        setTextValue() {
+            this.$props.chatData.labels[this.$props.labelName] = this.label;
+            this.updateData();
+        },
+        updateData() {
             this.$props.parentUpdateConvLabel(this.$props.labelName, this.label);
         },
     }
