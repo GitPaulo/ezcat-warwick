@@ -1,8 +1,8 @@
 <template>
 	<q-page class="flex flex-center">
 		<div class="q-pa-md block" >
-			<q-toolbar class="bg-primary text-white shadow-2">
-				<q-toolbar-title>Conversations</q-toolbar-title>
+			<q-toolbar class="bg-purple text-white shadow-2">
+				<q-toolbar-title class="bg-purple">Conversations</q-toolbar-title>
 
 				<q-linear-progress stripe rounded size="20px" :value="progress" color="positive" style="max-width: 25vw" >
 					<div class="absolute-full flex flex-center">
@@ -46,7 +46,7 @@
 
 		<q-dialog v-model="uploadDial" :maximized="maximizedUploadToggle" transition-show="fade" transition-hide="fade" >
 			<q-card style=" max-width: 100vw;">
-				<q-bar class="bg-primary text-white">
+				<q-bar class="bg-purple text-white">
 					<q-space />
 					<q-btn dense flat icon="minimize" @click="maximizedUploadToggle = false" :disable="!maximizedUploadToggle"></q-btn>
 					<q-btn dense flat icon="crop_square" @click="maximizedUploadToggle = true" :disable="maximizedUploadToggle"></q-btn>

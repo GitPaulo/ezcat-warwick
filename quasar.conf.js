@@ -106,11 +106,11 @@ module.exports = function (/* ctx */) {
       manifest: {
         name: `ezcat`,
         short_name: `ezcat`,
-        description: `EZCAT: an Easy Conversation Annotation Tool`,
+        description: `VWAG Chat Annotation Tool`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
-        theme_color: '#027be3',
+        theme_color: '#8b43de',
         icons: [
           {
             src: 'icons/icon-128x128.png',

@@ -1,7 +1,7 @@
 <template>
 	<q-page class="flex flex-center">
 		<div class="q-pa-md block" >
-			<q-toolbar class="bg-primary text-white shadow-2">
+			<q-toolbar class="bg-purple text-white shadow-2">
 				<q-toolbar-title>Settings</q-toolbar-title>
 				<q-btn dense class="q-ml-sm" icon="file_download" @click="downloadConfig()" color="secondary">
 					<q-tooltip :delay="200">Download the current configuration.</q-tooltip>
@@ -20,7 +20,7 @@
 
 		<q-dialog v-model="uploadDial" :maximized="maximizedUploadToggle" transition-show="fade" transition-hide="fade" >
 			<q-card style=" max-width: 100vw;">
-				<q-bar class="bg-primary text-white">
+				<q-bar class="bg-purple text-white">
 					<q-space />
 					<q-btn dense flat icon="minimize" @click="maximizedUploadToggle = false" :disable="!maximizedUploadToggle"></q-btn>
 					<q-btn dense flat icon="crop_square" @click="maximizedUploadToggle = true" :disable="maximizedUploadToggle"></q-btn>

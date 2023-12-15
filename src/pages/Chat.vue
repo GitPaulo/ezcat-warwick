@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="q-pa-md block">
-      <q-toolbar class="bg-primary text-white shadow-2">
+      <q-toolbar class="bg-purple text-white shadow-2">
       <q-toolbar-title>Conversation</q-toolbar-title>
       </q-toolbar>
 
