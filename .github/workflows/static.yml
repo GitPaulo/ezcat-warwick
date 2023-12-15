@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: 18
       - name: Build App
-        run: npx quasar build
+        run: npm install --no-optional && npx quasar build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
